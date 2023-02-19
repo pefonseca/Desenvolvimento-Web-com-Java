@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div class="container mt-3">
-  		<h2>AppLanche</h2>
-  		  		
-  		<h3>Cadastro de <a href="/usuario">usuários</a></h3>
-	</div>	
+		<h2>AppCar</h2>
+
+		<h3>Cardastro de <a href="/usuario/lista">usuários</a></h3>
+	</div>
 </body>
 </html>
