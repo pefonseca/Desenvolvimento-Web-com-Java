@@ -3,20 +3,22 @@ package br.edu.infnet.appcar.model.domain;
 import br.edu.infnet.appcar.model.exceptions.QuilometragemVeiculoInvalidoException;
 import br.edu.infnet.appcar.model.exceptions.ValorZeradoException;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public abstract class Veiculo {
 
-    private String codigo;
+    private Integer id;
     private String nome;
     private String cor;
     private Integer ano;
     private String marca;
-    private boolean primeiroDono;
-    private float valor;
-    private float quilometragem;
+    private String primeiroDono;
+    private Double valor;
+    private Double quilometragem;
 
-    public Veiculo(String codigo, String nome, String cor, Integer ano, String marca, boolean primeiroDono, float valor, float quilometragem) throws ValorZeradoException {
+    public Veiculo(Integer id, String nome, String cor, Integer ano, String marca, String primeiroDono, Double valor, Double quilometragem) throws ValorZeradoException {
         if(valor == 0) {
             throw new ValorZeradoException("O valor do veículo está zerado!");
         }
@@ -25,7 +27,7 @@ public abstract class Veiculo {
             throw new ValorZeradoException("O Valor do veículo está negativo!");
         }
 
-        this.codigo = codigo;
+        this.id = id;
         this.nome = nome;
         this.cor = cor;
         this.ano = ano;
@@ -35,13 +37,13 @@ public abstract class Veiculo {
         this.quilometragem = quilometragem;
     }
 
-    public abstract float calcularValorVenda() throws QuilometragemVeiculoInvalidoException;
+    public abstract Double calcularValorVenda() throws QuilometragemVeiculoInvalidoException;
 
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(codigo);
+        sb.append(id);
         sb.append(" | ");
         sb.append(nome);
         sb.append(" | ");
