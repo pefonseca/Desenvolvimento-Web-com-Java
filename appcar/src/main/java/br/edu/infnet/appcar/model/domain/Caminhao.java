@@ -11,12 +11,13 @@ public class Caminhao extends Veiculo {
 
     private float carga;
 
-    public Caminhao(String codigo, String nome, String cor, Integer ano, String marca, boolean primeiroDono, float valor, float quilometragem) throws ValorZeradoException {
-        super(codigo, nome, cor, ano, marca, primeiroDono, valor, quilometragem);
+    public Caminhao(Integer id, String nome, String cor, Integer ano, String marca, String primeiroDono, Double valor, Double quilometragem, float carga) throws ValorZeradoException {
+        super(id, nome, cor, ano, marca, primeiroDono, valor, quilometragem);
+        this.carga = carga;
     }
 
     @Override
-    public float calcularValorVenda() throws QuilometragemVeiculoInvalidoException {
+    public Double calcularValorVenda() throws QuilometragemVeiculoInvalidoException {
         if (this.getQuilometragem() > 30000) {
             return this.getValor() - 10000;
         }
