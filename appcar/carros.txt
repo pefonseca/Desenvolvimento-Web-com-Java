@@ -1,0 +1,4 @@
+Carro 1;vermelho;1990;GM;Nao;100000.00;100000
+Carro 2;vermelho;2000;GM;Sim;100000.00;100000
+Carro 3;vermelho;2010;GM;Nao;100000.00;100000
+Carro 4;vermelho;2020;GM;Sim;100000.00;100000

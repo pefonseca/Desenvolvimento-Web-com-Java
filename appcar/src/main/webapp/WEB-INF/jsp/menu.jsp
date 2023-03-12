@@ -9,7 +9,7 @@
             <li class="active"><a href="#">Home</a></li>
             <c:if test="${not empty usuario}">
                 <li><a href="/usuario/lista">Usuario</a></li>
-                <li><a href="#">Solicitante</a></li>
+                <li><a href="/solicitante/lista">Solicitante</a></li>
                 <li><a href="/carro/lista">Carro</a></li>
                 <li><a href="/moto/lista">Moto</a></li>
                 <li><a href="/caminhao/lista">Caminhão</a></li>
