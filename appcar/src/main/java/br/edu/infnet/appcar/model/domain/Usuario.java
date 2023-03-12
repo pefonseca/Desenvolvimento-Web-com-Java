@@ -1,23 +1,31 @@
 package br.edu.infnet.appcar.model.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "TUsuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String nome;
     private String senha;
     private String email;
-    private String[] caracteristicas;
+    @ElementCollection
+    private List<String> caracteristicas;
     private String tipo;
     private String setor;
     private int idade;
     private float salario;
-
-    public Usuario() { }
 
     public Usuario(String email, String senha) {
         this();
@@ -43,7 +51,7 @@ public class Usuario {
                 salario,
                 tipo,
                 setor,
-                caracteristicas.length
+                caracteristicas.size()
         );
     }
 }

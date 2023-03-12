@@ -1,7 +1,7 @@
 package br.edu.infnet.appcar.controller;
 
 import br.edu.infnet.appcar.model.domain.Usuario;
-import br.edu.infnet.appcar.repository.UsuarioRepository;
+import br.edu.infnet.appcar.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +13,12 @@ public class UsuarioController {
 
     private String msg;
 
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     @GetMapping(value = "/usuario")
     public String telaCadastro() {
         return "usuario/cadastro";
@@ -20,7 +26,7 @@ public class UsuarioController {
 
     @GetMapping(value = "/usuario/lista")
     public String telaLista(Model model) {
-        model.addAttribute("usuarios", UsuarioRepository.obterLista());
+        model.addAttribute("usuarios", usuarioService.obterLista());
 
         model.addAttribute("mensagem", msg);
 
@@ -31,7 +37,7 @@ public class UsuarioController {
 
     @PostMapping(value = "/usuario/incluir")
     public String incluir(Usuario usuario) {
-        UsuarioRepository.incluir(usuario);
+        usuarioService.incluir(usuario);
 
         msg = "A inclusão do usuário "+ usuario.getNome() +" foi realizada com sucesso!!!";
 
@@ -41,9 +47,9 @@ public class UsuarioController {
     @GetMapping(value = "/usuario/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        Usuario usuario = UsuarioRepository.excluir(id);
+        usuarioService.excluir(id);
 
-        msg = "A exclusão do usuário " + usuario.getNome() + " foi realizada com sucesso!!";
+        msg = "A exclusão do usuário id: " + id + " foi realizada com sucesso!!";
 
         return "redirect:/usuario/lista";
     }

@@ -1,15 +1,22 @@
 package br.edu.infnet.appcar.model.domain;
 
 import br.edu.infnet.appcar.model.exceptions.SolicitanteInvalidoException;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "TSolicitante")
 public class Solicitante {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
     private String nome;
     private String cpf;
     private String email;
