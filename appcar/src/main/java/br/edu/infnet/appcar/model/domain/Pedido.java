@@ -1,22 +1,38 @@
 package br.edu.infnet.appcar.model.domain;
 
-import br.edu.infnet.appcar.model.exceptions.PedidoSemVeiculoException;
 import br.edu.infnet.appcar.model.exceptions.PedidoSemSolicitanteException;
+import br.edu.infnet.appcar.model.exceptions.PedidoSemVeiculoException;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "TPedido")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String descricao;
     private boolean web;
-    private LocalDateTime data;
+    private LocalDate data;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idSolicitante")
+    private Solicitante solicitante;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+    @ManyToMany(cascade = CascadeType.DETACH)
     private List<Veiculo> veiculos;
 
     public Pedido(Usuario usuario, List<Veiculo> veiculos) throws PedidoSemSolicitanteException, PedidoSemVeiculoException {
@@ -32,7 +48,7 @@ public class Pedido {
         this.usuario = usuario;
         this.veiculos = veiculos;
 
-        data = LocalDateTime.now();
+        data = LocalDate.now();
     }
 
     public void imprimir(){

@@ -1,6 +1,7 @@
 package br.edu.infnet.appcar.service;
 
 import br.edu.infnet.appcar.model.domain.Solicitante;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.repository.SolicitanteRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,9 @@ public class SolicitanteService {
 
     public Collection<Solicitante> obterLista() {
         return repository.findAll();
+    }
+
+    public Collection<Solicitante> obterLista(Usuario usuario) {
+        return repository.obterLista(usuario.getId());
     }
 }

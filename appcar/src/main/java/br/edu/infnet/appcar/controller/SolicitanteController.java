@@ -1,12 +1,11 @@
 package br.edu.infnet.appcar.controller;
 
 import br.edu.infnet.appcar.model.domain.Solicitante;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.SolicitanteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SolicitanteController {
@@ -24,9 +23,9 @@ public class SolicitanteController {
     }
 
     @GetMapping(value = "/solicitante/lista")
-    public String telaLista(Model model) {
+    public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario) {
 
-        model.addAttribute("solicitantes", service.obterLista());
+        model.addAttribute("solicitantes", service.obterLista(usuario));
         model.addAttribute("mensagem", msg);
 
         msg = null;
@@ -35,7 +34,10 @@ public class SolicitanteController {
     }
 
     @PostMapping(value = "/solicitante/incluir")
-    public String incluir(Solicitante solicitante) {
+    public String incluir(Solicitante solicitante, @SessionAttribute("usuario") Usuario usuario) {
+
+        solicitante.setUsuario(usuario);
+
         service.incluir(solicitante);
 
         msg = "A inclusão do solicitante " + solicitante.getNome() + " foi realizada com sucesso!!!";

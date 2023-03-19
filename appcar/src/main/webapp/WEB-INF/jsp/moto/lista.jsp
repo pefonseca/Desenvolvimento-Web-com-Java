@@ -41,6 +41,7 @@
                 <th>Primeiro Dono</th>
                 <th>Valor</th>
                 <th>Quilometragem</th>
+                <th>Usuario</th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,7 @@
                     <td>${c.primeiroDono}</td>
                     <td>${c.valor}</td>
                     <td>${c.quilometragem}</td>
+                    <td>${c.usuario.nome}</td>
                     <td><a href="/moto/${c.id}/excluir">excluir</a></td>
                 </tr>
             </c:forEach>

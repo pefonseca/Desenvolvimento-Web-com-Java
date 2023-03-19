@@ -11,6 +11,10 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
+    public Usuario autenticar(Usuario usuario) {
+        return usuarioRepository.autenticacao(usuario.getEmail(), usuario.getSenha());
+    }
+
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }

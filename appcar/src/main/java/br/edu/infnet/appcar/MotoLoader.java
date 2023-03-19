@@ -1,6 +1,7 @@
 package br.edu.infnet.appcar;
 
 import br.edu.infnet.appcar.model.domain.Moto;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.MotoService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,6 +35,9 @@ public class MotoLoader implements ApplicationRunner {
                 while(linha != null) {
                     campos = linha.split(";");
 
+                    Usuario usuario = new Usuario();
+                    usuario.setId(1);
+
                     Moto moto = new Moto(
                                     campos[0],
                                     campos[1],
@@ -42,6 +46,8 @@ public class MotoLoader implements ApplicationRunner {
                                     campos[4],
                                     Double.valueOf(campos[5]),
                                     Double.valueOf(campos[6]));
+
+                    moto.setUsuario(usuario);
 
                     service.incluir(moto);
 

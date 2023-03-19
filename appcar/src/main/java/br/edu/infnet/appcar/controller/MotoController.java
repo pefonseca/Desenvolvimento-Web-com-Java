@@ -1,6 +1,7 @@
 package br.edu.infnet.appcar.controller;
 
 import br.edu.infnet.appcar.model.domain.Moto;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.repository.MotoRepository;
 import br.edu.infnet.appcar.service.MotoService;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class MotoController {
@@ -37,7 +39,9 @@ public class MotoController {
     }
 
     @PostMapping(value = "/moto/incluir")
-    public String incluir(Moto moto) {
+    public String incluir(Moto moto, @SessionAttribute("usuario") Usuario usuario) {
+        moto.setUsuario(usuario);
+
         service.incluir(moto);
 
         msg = "A inclusão da moto "+ moto.getNome() +" foi realizada com sucesso!!!";

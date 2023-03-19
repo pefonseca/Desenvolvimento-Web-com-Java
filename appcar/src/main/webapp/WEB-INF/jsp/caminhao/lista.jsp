@@ -56,6 +56,7 @@
                     <td>${c.valor}</td>
                     <td>${c.quilometragem}</td>
                     <td>${c.carga}</td>
+                    <td>${c.usuario.nome}</td>
                     <td><a href="/caminhao/${c.id}/excluir">excluir</a></td>
                 </tr>
             </c:forEach>
