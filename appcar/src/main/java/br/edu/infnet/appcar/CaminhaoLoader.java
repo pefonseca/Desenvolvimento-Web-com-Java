@@ -1,6 +1,7 @@
 package br.edu.infnet.appcar;
 
 import br.edu.infnet.appcar.model.domain.Caminhao;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.CaminhaoService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,6 +35,9 @@ public class CaminhaoLoader implements ApplicationRunner {
                 while(linha != null) {
                     campos = linha.split(";");
 
+                    Usuario usuario = new Usuario();
+                    usuario.setId(1);
+
                     Caminhao caminhao = new Caminhao(
                                             campos[0],
                                             campos[1],
@@ -43,6 +47,8 @@ public class CaminhaoLoader implements ApplicationRunner {
                                             Double.valueOf(campos[5]),
                                             Double.valueOf(campos[6]),
                                             Float.parseFloat(campos[7]));
+
+                    caminhao.setUsuario(usuario);
 
                     caminhaoService.incluir(caminhao);
 

@@ -1,12 +1,14 @@
 package br.edu.infnet.appcar.controller;
 
 import br.edu.infnet.appcar.model.domain.Caminhao;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.CaminhaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class CaminhaoController {
@@ -36,7 +38,9 @@ public class CaminhaoController {
     }
 
     @PostMapping(value = "/caminhao/incluir")
-    public String incluir(Caminhao caminhao) {
+    public String incluir(Caminhao caminhao, @SessionAttribute("usuario") Usuario usuario) {
+        caminhao.setUsuario(usuario);
+
         service.incluir(caminhao);
 
         msg = "A inclusão do caminhão "+ caminhao.getNome() +" foi realizada com sucesso!!!";

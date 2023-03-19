@@ -5,15 +5,15 @@
 <head>
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title>Listagem de Motos</title>
+    <title>Listagem de Veículos</title>
 </head>
 <body>
 
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container">
-    <form action="/moto" method="get">
-        <h3>Listagem de Motos</h3>
+    <form action="/veiculo" method="get">
+        <h3>Listagem de Veículos</h3>
 
         <c:if test="${not empty mensagem}">
             <div class="alert alert-success">
@@ -24,12 +24,12 @@
         <button type="submit">Novo</button>
     </form>
 
-    <c:if test="${empty motos}">
-        <h5>Não existem motos cadastradas!!!</h5>
+    <c:if test="${empty veiculos}">
+        <h5>Não existem veiculos cadastradas!!!</h5>
     </c:if>
 
-    <c:if test="${not empty motos}">
-        <h5>Quantidade de motos cadastrados: ${motos.size()}!!!</h5>
+    <c:if test="${not empty veiculos}">
+        <h5>Quantidade de veiculos cadastrados: ${veiculos.size()}!!!</h5>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -45,18 +45,18 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="c" items="${motos}">
+            <c:forEach var="v" items="${veiculos}">
                 <tr>
-                    <td>${c.id}</td>
-                    <td>${c.nome}</td>
-                    <td>${c.cor}</td>
-                    <td>${c.ano}</td>
-                    <td>${c.marca}</td>
-                    <td>${c.primeiroDono}</td>
-                    <td>${c.valor}</td>
-                    <td>${c.quilometragem}</td>
-                    <td>${c.usuario.nome}</td>
-                    <td><a href="/moto/${c.id}/excluir">excluir</a></td>
+                    <td>${v.id}</td>
+                    <td>${v.nome}</td>
+                    <td>${v.cor}</td>
+                    <td>${v.ano}</td>
+                    <td>${v.marca}</td>
+                    <td>${v.primeiroDono}</td>
+                    <td>${v.valor}</td>
+                    <td>${v.quilometragem}</td>
+                    <td>${v.usuario.nome}</td>
+                    <td><a href="/veiculo/${v.id}/excluir">excluir</a></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -1,6 +1,7 @@
 package br.edu.infnet.appcar;
 
 import br.edu.infnet.appcar.model.domain.Carro;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.CarroService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -34,6 +35,9 @@ public class CarroLoader implements ApplicationRunner {
                 while(linha != null) {
                     campos = linha.split(";");
 
+                    Usuario usuario = new Usuario();
+                    usuario.setId(1);
+
                     Carro carro = new Carro(
                                             campos[0],
                                             campos[1],
@@ -42,6 +46,8 @@ public class CarroLoader implements ApplicationRunner {
                                             campos[4],
                                             Double.valueOf(campos[5]),
                                             Double.valueOf(campos[6]));
+
+                    carro.setUsuario(usuario);
 
                     service.incluir(carro);
 

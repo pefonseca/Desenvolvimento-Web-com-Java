@@ -42,6 +42,8 @@
 						<th>Setor</th>
 						<th>Idade</th>
 						<th>Salário</th>
+						<th>Solicitantes</th>
+						<th>Veiculos</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,6 +58,8 @@
 							<td>${u.setor}</td>
 							<td>${u.idade}</td>
 							<td>${u.salario}</td>
+							<td>${u.solicitantes.size()}</td>
+							<td>${u.veiculos.size()}</td>
 							<td><a href="/usuario/${u.id}/excluir">excluir</a></td>
 						</tr>
 					</c:forEach>

@@ -2,6 +2,7 @@ package br.edu.infnet.appcar.controller;
 
 import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.AcessoService;
+import br.edu.infnet.appcar.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.support.SessionStatus;
 public class AcessoController {
 
     private final AcessoService service;
+    private final UsuarioService usuarioService;
 
-    public AcessoController(AcessoService service) {
+    public AcessoController(AcessoService service, UsuarioService usuarioService) {
         this.service = service;
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping(value = "/login")
@@ -31,7 +34,8 @@ public class AcessoController {
 
         Usuario user = new Usuario(email, senha);
 
-        user = service.autenticar(user);
+//        user = service.autenticar(user);
+        user = usuarioService.autenticar(user);
 
         if(user != null) {
             model.addAttribute("usuario", user);

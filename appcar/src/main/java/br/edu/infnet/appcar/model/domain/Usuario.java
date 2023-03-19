@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Vector;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String senha;
@@ -26,6 +27,15 @@ public class Usuario {
     private String setor;
     private int idade;
     private float salario;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Solicitante> solicitantes;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Veiculo> veiculos;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Pedido> pedidos;
 
     public Usuario(String email, String senha) {
         this();

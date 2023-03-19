@@ -1,18 +1,19 @@
 package br.edu.infnet.appcar;
 
 import br.edu.infnet.appcar.model.domain.Solicitante;
+import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.SolicitanteService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+@Order(2)
 @Service
 public class SolicitanteLoader implements ApplicationRunner {
 
@@ -38,11 +39,17 @@ public class SolicitanteLoader implements ApplicationRunner {
                 while(linha != null) {
                     campos = linha.split(";");
 
+                    Usuario usuario = new Usuario();
+                    usuario.setId(1);
+
                     Solicitante solicitante = Solicitante.builder()
                                                          .nome(campos[0])
                                                          .cpf(campos[1])
                                                          .email(campos[2])
+                                                         .usuario(usuario)
                                                          .build();
+
+                    solicitante.setUsuario(usuario);
 
                     solicitanteService.incluir(solicitante);
 
