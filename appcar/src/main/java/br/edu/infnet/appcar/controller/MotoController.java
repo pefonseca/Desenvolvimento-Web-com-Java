@@ -52,9 +52,13 @@ public class MotoController {
     @GetMapping(value = "/moto/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        service.excluir(id);
+        try {
+            service.excluir(id);
 
-        msg = "A exclusão da moto id: " + id + " foi realizada com sucesso!!";
+            msg = "A exclusão da moto id: " + id + " foi realizada com sucesso!!";
+        } catch (Exception e) {
+            msg = "Impossível realizar a exclusão da moto id: " + id + "!!!";
+        }
 
         return "redirect:/moto/lista";
     }

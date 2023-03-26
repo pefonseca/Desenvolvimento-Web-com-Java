@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.Optional;
+
 @Controller
 public class VeiculoController {
     private String msg;
@@ -50,10 +52,13 @@ public class VeiculoController {
 
     @GetMapping(value = "/veiculo/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
+        try {
+            veiculoService.excluir(id);
 
-        veiculoService.excluir(id);
-
-        msg = "A exclusão do veiculo id: " + id + " foi realizada com sucesso!!";
+            msg = "A exclusão do veiculo id: " + id + " foi realizada com sucesso!!";
+        } catch (Exception e) {
+            msg = "Impossível realizar a exclusão do veiculo " + id + "!!!";
+        }
 
         return "redirect:/veiculo/lista";
     }

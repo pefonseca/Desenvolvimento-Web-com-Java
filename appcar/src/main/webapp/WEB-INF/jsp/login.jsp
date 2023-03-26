@@ -20,11 +20,11 @@
         <form action="/login" method="post">
             <div class="form-group">
                 <label>E-mail:</label>
-                <input type="email" class="form-control" placeholder="Enter email" name="email" value="email@email.com">
+                <input type="email" class="form-control" placeholder="Enter email" name="email" value="admin@admin.com">
             </div>
             <div class="form-group">
                 <label>Senha:</label>
-                <input type="password" class="form-control" placeholder="Enter password" name="senha" value="email@email.com">
+                <input type="password" class="form-control" placeholder="Enter password" name="senha" value="123">
             </div>
             <button type="submit" class="btn btn-secondary">Acessar</button>
         </form>

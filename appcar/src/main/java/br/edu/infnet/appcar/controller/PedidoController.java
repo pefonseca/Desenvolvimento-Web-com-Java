@@ -3,26 +3,33 @@ package br.edu.infnet.appcar.controller;
 import br.edu.infnet.appcar.model.domain.Pedido;
 import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.PedidoService;
+import br.edu.infnet.appcar.service.SolicitanteService;
+import br.edu.infnet.appcar.service.VeiculoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PedidoController {
 
-    private final PedidoService pedidoService;
-
     private String msg;
+    private final PedidoService pedidoService;
+    private final SolicitanteService solicitanteService;
+    private final VeiculoService veiculoServicee;
 
-    public PedidoController(PedidoService pedidoService) {
+    public PedidoController(PedidoService pedidoService, SolicitanteService solicitanteService, VeiculoService veiculoServicee) {
         this.pedidoService = pedidoService;
+        this.solicitanteService = solicitanteService;
+        this.veiculoServicee = veiculoServicee;
     }
 
     @GetMapping(value = "/pedido")
-    public String telaCadastro() {
+    public String telaCadastro(Model model, @SessionAttribute("usuario") Usuario usuario) {
+
+        model.addAttribute("solicitantes", solicitanteService.obterLista(usuario));
+
+        model.addAttribute("veiculos", veiculoServicee.obterLista(usuario));
+
         return "pedido/cadastro";
     }
 

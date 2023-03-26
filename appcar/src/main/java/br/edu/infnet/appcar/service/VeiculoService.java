@@ -1,12 +1,13 @@
 package br.edu.infnet.appcar.service;
 
-import br.edu.infnet.appcar.model.domain.Pedido;
 import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.model.domain.Veiculo;
 import br.edu.infnet.appcar.repository.VeiculoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class VeiculoService {
@@ -30,6 +31,6 @@ public class VeiculoService {
     }
 
     public Collection<Veiculo> obterLista(Usuario usuario){
-        return veiculoRepository.obterLista(usuario.getId());
+        return veiculoRepository.obterLista(usuario.getId(), Sort.by(Sort.Direction.ASC, "nome"));
     }
 }
