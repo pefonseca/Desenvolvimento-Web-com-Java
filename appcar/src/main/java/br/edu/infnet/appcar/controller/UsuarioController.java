@@ -1,5 +1,6 @@
 package br.edu.infnet.appcar.controller;
 
+import br.edu.infnet.appcar.client.Endereco;
 import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.service.UsuarioService;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UsuarioController {

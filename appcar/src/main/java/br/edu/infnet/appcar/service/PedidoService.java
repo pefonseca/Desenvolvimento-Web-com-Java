@@ -3,6 +3,7 @@ package br.edu.infnet.appcar.service;
 import br.edu.infnet.appcar.model.domain.Pedido;
 import br.edu.infnet.appcar.model.domain.Usuario;
 import br.edu.infnet.appcar.repository.PedidoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class PedidoService {
     }
 
     public Collection<Pedido> obterLista(Usuario usuario){
-        return pedidoRepository.obterLista(usuario.getId());
+        return pedidoRepository.obterLista(usuario.getId(), Sort.by(Sort.Direction.ASC, "nome"));
     }
 
     public Pedido obterPorId(Integer id) {

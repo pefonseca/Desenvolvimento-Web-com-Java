@@ -1,5 +1,6 @@
 package br.edu.infnet.appcar.model.domain;
 
+import br.edu.infnet.appcar.client.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,15 +28,19 @@ public class Usuario {
     private String setor;
     private int idade;
     private float salario;
-    @OneToMany
+    private boolean admin;
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idUsuario")
     private List<Solicitante> solicitantes;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idUsuario")
     private List<Veiculo> veiculos;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idUsuario")
     private List<Pedido> pedidos;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
 
     public Usuario(String email, String senha) {
         this();

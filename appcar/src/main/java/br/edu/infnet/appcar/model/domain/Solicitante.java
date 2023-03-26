@@ -1,5 +1,6 @@
 package br.edu.infnet.appcar.model.domain;
 
+import br.edu.infnet.appcar.client.Endereco;
 import br.edu.infnet.appcar.model.exceptions.SolicitanteInvalidoException;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,10 @@ public class Solicitante {
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
 
     public Solicitante(String nome, String cpf, String email) throws SolicitanteInvalidoException {
 

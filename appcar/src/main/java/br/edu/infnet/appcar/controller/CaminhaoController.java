@@ -51,9 +51,13 @@ public class CaminhaoController {
     @GetMapping(value = "/caminhao/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        service.excluir(id);
+        try {
+            service.excluir(id);
 
-        msg = "A exclusão do caminhão Id: " + id + " foi realizada com sucesso!!";
+            msg = "A exclusão do caminhão id: " + id + " foi realizada com sucesso!!";
+        } catch (Exception e) {
+            msg = "Impossível realizar a exclusão do caminhão id: " + id + "!!!";
+        }
 
         return "redirect:/caminhao/lista";
     }
